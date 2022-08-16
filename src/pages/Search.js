@@ -33,7 +33,7 @@ const Search = (props) => {
   const handleSearch = async () => {
     setResults(null);
     const response = await fetch(
-      `http://finalspringboot-env-3.eba-psqhnabc.us-east-1.elasticbeanstalk.com/search/rental/${searchBy}/${searchBy}?${searchBy}=${search}`
+      `http://finalspringboot-env.eba-psqhnabc.us-east-1.elasticbeanstalk.com/search/rental/${searchBy}/${searchBy}?${searchBy}=${search}`
     );
     if (!response.ok) {
       const message = `An error occurred: ${response.statusText}`;

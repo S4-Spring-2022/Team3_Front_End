@@ -33,7 +33,7 @@ const Register = () => {
       let user = new User(userName, password, personId);
       // bcrypt.hash(user.password, 10, (err, hash) => {})
       // ^^ this is where i would encode the password, unless server side encryption becomes my chosen solution
-      await fetch("http://finalspringboot-env-3.eba-psqhnabc.us-east-1.elasticbeanstalk.com/users/add", {
+      await fetch("http://finalspringboot-env.eba-psqhnabc.us-east-1.elasticbeanstalk.com/users/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
