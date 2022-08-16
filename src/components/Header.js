@@ -12,7 +12,7 @@ const Header = (props) => {
 
   return (
     <header>
-      <div>Search Animals</div>
+      <div>Search OurBnB</div>
       <nav>
         {/* Link for login becomes logout if user is defined */}
         {props.user===null ? <Link to="/" >Login</Link> : <Link to="/" >Logout</Link>}
