@@ -31,7 +31,7 @@ const Login = (props) => {
     }
     // code to send value to server to check if user exists
 
-    await fetch(`http://localhost:8080/users/userName?userName=${userName}`, {
+    await fetch(`http://finalspringboot-env-3.eba-psqhnabc.us-east-1.elasticbeanstalk.com/users/userName?userName=${userName}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
