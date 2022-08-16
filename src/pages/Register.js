@@ -8,14 +8,16 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [personId, setPersonId] = useState(0);
   const [passConfirm, setPassConfirm] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   class User {
-    constructor(userName, password) {
+    constructor(userName, password, personId) {
       this.userName = userName;
       this.password = password;
+      this.personId = personId
     }
   }
 
@@ -28,13 +30,15 @@ const Register = () => {
       setError("Passwords do not match");
     } else {
       setError(null);
-      let user = new User(userName, password);
+      let user = new User(userName, password, personId);
       // bcrypt.hash(user.password, 10, (err, hash) => {})
       // ^^ this is where i would encode the password, unless server side encryption becomes my chosen solution
-      await fetch("http://localhost:5000/users/add", {
+      await fetch("http://finalspringboot-env.eba-psqhnabc.us-east-1.elasticbeanstalk.com/users/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "mode": "cors",
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(user),
       }).catch((error) => {
@@ -45,6 +49,7 @@ const Register = () => {
       setUserName("");
       setPassword("");
       setPassConfirm("");
+      setPersonId(1);
       navigate("/");
     }
   };
@@ -59,6 +64,14 @@ const Register = () => {
           name="username"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
+        />
+        <br />
+        <label>Person Id</label>
+        <input
+          type="personId"
+          name="personId"
+          value={personId}
+          onChange={(e) => setPersonId(e.target.value)}
         />
         <br />
         <label>Password:</label>
