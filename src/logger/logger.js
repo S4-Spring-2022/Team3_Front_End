@@ -43,6 +43,6 @@ class Message {
 // console.log(logger.create("user1", "search1", "mongo", new Date()));
 
 
-module.exports = {
-    Logger
-}
+// module.exports = {
+//     Logger
+// }
