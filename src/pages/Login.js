@@ -51,7 +51,7 @@ const Login = (props) => {
         }
       })
       .catch((error) => {
-        setError("User does not exist" );
+        setError("User does not exist");
         return;
       })
       .then((data) => {
@@ -82,9 +82,9 @@ const Login = (props) => {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1 id="login">Login</h1>
       <form id="registerForm" onSubmit={handleSubmit}>
-        <label>Username:</label>
+        <label id="username">Username:</label>
         <input
           type="text"
           name="username"
@@ -92,7 +92,7 @@ const Login = (props) => {
           onChange={(e) => setUserName(e.target.value)}
         />
         <br />
-        <label>Password:</label>
+        <label id="password">Password:</label>
         <input
           type="password"
           name="password"
