@@ -5,7 +5,7 @@ const Header = (props) => {
 
   return (
     <header>
-      <div>Search Animals</div>
+      <div>Search OurBnB</div>
       <nav>
         {props.user===null ? <Link to="/" >Login</Link> : <Link to="/" >Logout</Link>}
         <Link to="/register">Register</Link>

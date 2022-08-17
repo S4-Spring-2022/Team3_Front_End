@@ -6,14 +6,16 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [personId, setPersonId] = useState();
   const [passConfirm, setPassConfirm] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   class User {
-    constructor(userName, password) {
+    constructor(userName, password, personId) {
       this.userName = userName;
       this.password = password;
+      this.personId = personId
     }
   }
 
@@ -27,11 +29,14 @@ const Register = () => {
     } else {
       setError(null);
       let user = new User(userName, password);
-      
+      // bcrypt.hash(user.password, 10, (err, hash) => {})
+      // ^^ this is where i would encode the password, unless server side encryption becomes my chosen solution
       await fetch("http://localhost:5000/users/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "mode": "cors",
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(user),
       }).catch((error) => {
@@ -42,15 +47,16 @@ const Register = () => {
       setUserName("");
       setPassword("");
       setPassConfirm("");
+      setPersonId(1);
       navigate("/");
     }
   };
 
   return (
     <div>
-      <h1>Register</h1>
+      <h1 id="register">Register</h1>
       <form id="registerForm" onSubmit={handleSubmit}>
-        <label>Username:</label>
+        <label id="registerinfo">Username:</label>
         <input
           type="text"
           name="username"
@@ -58,7 +64,15 @@ const Register = () => {
           onChange={(e) => setUserName(e.target.value)}
         />
         <br />
-        <label>Password:</label>
+        <label id="registerinfo">Person Id</label>
+        <input
+          type="personId"
+          name="personId"
+          value={personId}
+          onChange={(e) => setPersonId(e.target.value)}
+        />
+        <br />
+        <label id="registerinfo">Password:</label>
         <input
           type="password"
           name="password"
@@ -66,7 +80,7 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <label>Confirm Password:</label>
+        <label id="registerinfo">Confirm Password:</label>
         <input
           type="password"
           name="password"

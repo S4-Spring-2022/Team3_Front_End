@@ -5,91 +5,127 @@ const Results = (props) => {
   const results = props.results;
   const [shortResults, setShortResults] = useState([]);
 
+  // we aren't using mongo
+  // useEffect(() => {
+  //   if (props.database === "mongo") {
+  //     console.log(results[0]);
+  //     let temp = [];
+  //     let number;
+  //     results.length < 20 ? (number = results.length) : (number = 20);
+  //     // ^^ if the results are less than 20, display all results otherwise display 20
+  //     for (let i = 0; i < number; i++) {
+  //       temp.push(results[i]);
+  //     }
+  //     setShortResults(temp);
+  //   } else {
+  //     console.log(results);
+  //     setShortResults(results);
+  //   }
+  // }, []);
+
   useEffect(() => {
-    if (props.database === "mongo") {
-      console.log(results[0]);
-      let temp = [];
-      let number;
-      results.length < 20 ? (number = results.length) : (number = 20);
-      // ^^ if the results are less than 20, display all results otherwise display 20
-      for (let i = 0; i < number; i++) {
-        temp.push(results[i]);
-      }
-      setShortResults(temp);
-    } else {
-      console.log(results);
-      setShortResults(results);
-    }
+    setShortResults(results);
+
   }, []);
 
-  let i = 0;
-  if (props.database === "postgres") {
-    return (
-      <div>
-        <h1> Postgres Results</h1>
-        {shortResults.map((result) => {
-          console.log(result);
-          return (
-            <div>
-              <h2>{result.business_name}</h2>
-              <p>
-                {`${result.city}`}
-                <br />
-                {result.address}
-                <br />
-                {result.categories}
-                <br />
-                {/* found an error this morning, fixed review_count to be displayed instead of .stars twice :) */}
-                {`Rated ${result.stars} stars across ${result.review_count} reviews.`}
-                <br />
-              </p>
-            </div>
-          );
-        })}
-      </div>
-    );
-  } else if (props.database === "mongo") {
-    return (
-      <div>
-        <h1>Results</h1>
+  if (results.length > 0) {
 
-        {shortResults.map((result) => {
-          return (
-            <div>
-              <hr />
-              <h3>{result.name}</h3>
-              <div>
-                {`${result.city}, ${result.state}`} <br />
-                {result.address}
-                <br />
-                {result.categories} <br />
-                {`Rating: ${result.stars}/5 based on ${result.review_count} reviews.`}{" "}
-                <br />
-                <hr />
-              </div>
-            </div>
-          );
-        })}
-        <br />
-        {results
-          ? `There are ${results.length} results, up to the first 20 are shown`
-          : null}
-      </div>
-    );
-  } else {
     return (
       <div>
-        <h1>{`Search History for ${props.user}`}</h1>
-        {results.map((result) => {
-          return (
-            <div>
-              <p className="searchHistory">{`Searched "${result.search}" on the ${result.database} database on ${result.time}`}</p>
-            </div>
-          );
-        })}
+        <h1 id="results">Results</h1>
+        <hr />
+
+        {shortResults.map((result) => (
+
+          <div>
+            <hr />
+            <h2 class="rentalTitle">{result.rentalDescription}</h2>
+            <hr />
+            <h3 id="rentalinfo">Availability: {result.rentalStatus}</h3>
+            <h3 id="rentalinfo">Rental type: {result.rentalType}</h3>
+            <h3 id="rentalinfo">Rating: {result.rentalScore} Stars</h3>
+            <h3 id="rentalinfo">Nightly Rate: ${result.rentalPrice}.00</h3>
+            <h3 id="rentalinfo">Renting Since: {result.rentalListDate}</h3>
+
+
+          </div>
+
+        ))}
+
       </div>
-    );
+    )
   }
+
+
+
+  // let i = 0;
+  // if (props.database === "postgres") {
+  //   return (
+  //     <div>
+  //       <h1> Postgres Results</h1>
+  //       {shortResults.map((result) => {
+  //         console.log(result);
+  //         return (
+  //           <div>
+  //             <h2>{result.business_name}</h2>
+  //             <p>
+  //               {`${result.city}`}
+  //               <br />
+  //               {result.address}
+  //               <br />
+  //               {result.categories}
+  //               <br />
+  //               {/* found an error this morning, fixed review_count to be displayed instead of .stars twice :) */}
+  //               {`Rated ${result.stars} stars across ${result.review_count} reviews.`}
+  //               <br />
+  //             </p>
+  //           </div>
+  //         );
+  //       })}
+  //     </div>
+  //   );
+  // } else if (props.database === "mongo") {
+  //   return (
+  //     <div>
+  //       <h1>Results</h1>
+
+  //       {shortResults.map((result) => {
+  //         return (
+  //           <div>
+  //             <hr />
+  //             <h3>{result.name}</h3>
+  //             <div>
+  //               {`${result.city}, ${result.state}`} <br />
+  //               {result.address}
+  //               <br />
+  //               {result.categories} <br />
+  //               {`Rating: ${result.stars}/5 based on ${result.review_count} reviews.`}{" "}
+  //               <br />
+  //               <hr />
+  //             </div>
+  //           </div>
+  //         );
+  //       })}
+  //       <br />
+  //       {results
+  //         ? `There are ${results.length} results, up to the first 20 are shown`
+  //         : null}
+  //     </div>
+  //   );
+  // } else {
+  //   return (
+  //     <div>
+  //       <h1>{`Search History for ${props.user}`}</h1>
+  //       {results.map((result) => {
+  //         return (
+  //           <div>
+  //             <p className="searchHistory">{`Searched "${result.search}" on the ${result.database} database on ${result.time}`}</p>
+  //           </div>
+  //         );
+  //       })}
+  //     </div>
+  //   );
+  // }
 };
 
 export default Results;
