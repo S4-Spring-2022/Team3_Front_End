@@ -43,9 +43,9 @@ const Results = (props) => {
             <hr />
             <h2 class="rentalTitle">{result.rentalDescription}</h2>
             <hr />
-            <h3 id="rentalinfo">{result.rentalStatus}</h3>
+            <h3 id="rentalinfo">Availability: {result.rentalStatus}</h3>
             <h3 id="rentalinfo">Rental type: {result.rentalType}</h3>
-            <h3 id="rentalinfo">Rated {result.rentalScore} Stars</h3>
+            <h3 id="rentalinfo">Rating: {result.rentalScore} Stars</h3>
             <h3 id="rentalinfo">Nightly Rate: ${result.rentalPrice}.00</h3>
             <h3 id="rentalinfo">Renting Since: {result.rentalListDate}</h3>
 
