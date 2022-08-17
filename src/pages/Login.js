@@ -23,13 +23,7 @@ const Login = (props) => {
       setError("Please enter a username and password");
       return
     }
-<<<<<<< HEAD
     await fetch(`http://localhost:8080/users/userName?userName=${userName}`, {
-=======
-    // code to send value to server to check if user exists
-
-    await fetch(`http://finalspringboot-env.eba-psqhnabc.us-east-1.elasticbeanstalk.com/users/userName?userName=${userName}`, {
->>>>>>> 5ea7f45592730ab3b19820acd8405eef4d7f42e2
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +41,7 @@ const Login = (props) => {
         }
       })
       .catch((error) => {
-        setError("User does not exist");
+        setError("User does not exist" );
         return;
       })
       .then((data) => {
@@ -70,9 +64,9 @@ const Login = (props) => {
 
   return (
     <div>
-      <h1 id="login">Login</h1>
+      <h1>Login</h1>
       <form id="registerForm" onSubmit={handleSubmit}>
-        <label id="username">Username:</label>
+        <label>Username:</label>
         <input
           type="text"
           name="username"
@@ -80,7 +74,7 @@ const Login = (props) => {
           onChange={(e) => setUserName(e.target.value)}
         />
         <br />
-        <label id="password">Password:</label>
+        <label>Password:</label>
         <input
           type="password"
           name="password"
