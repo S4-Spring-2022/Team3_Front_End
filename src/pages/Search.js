@@ -70,7 +70,7 @@ const Search = (props) => {
     e.preventDefault();
     console.log(search);
     console.log(searchBy);
-   
+
     handleSearch();
     // setMessage(logger.create(props.user, search, new Date()));
   }
@@ -89,7 +89,7 @@ const Search = (props) => {
   //   }
   // }, [message]);
 
-// dependant on the logs, therefore deactivated until/if we reactivate logging
+  // dependant on the logs, therefore deactivated until/if we reactivate logging
   // const searchHistory = async (e) => {
   //   e.preventDefault();
   //   // setDatabase("");
@@ -106,7 +106,7 @@ const Search = (props) => {
 
   return (
     <div>
-      <h1>Search</h1>
+      <h1 id="search">Search</h1>
       <form id="searchForm" onSubmit={handleSubmit}>
         {/* <div>
           <input
@@ -125,48 +125,48 @@ const Search = (props) => {
           <label>PostgreSQL</label>
         </div> */}
         <br />
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="searchBy"
-                value="province"
-                onChange={(e) => setSearchBy(e.target.value)}
-              />
-              Province
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="searchBy"
-                value="city"
-                onChange={(e) => setSearchBy(e.target.value)}
-              />
-              City
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="searchBy"
-                value="street"
-                onChange={(e) => setSearchBy(e.target.value)}
-              />
-              Street
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="searchBy"
-                value="rentalType"
-                onChange={(e) => setSearchBy(e.target.value)}
-              />
-              Rental Type
-            </label>
-            <br />
-          </div>
+        <div>
+          <label id="radiobuttons">
+            <input
+              type="radio"
+              name="searchBy"
+              value="province"
+              onChange={(e) => setSearchBy(e.target.value)}
+            />
+            Province
+          </label>
+          <label id="radiobuttons">
+            <input
+              type="radio"
+              name="searchBy"
+              value="city"
+              onChange={(e) => setSearchBy(e.target.value)}
+            />
+            City
+          </label>
+          <label id="radiobuttons">
+            <input
+              type="radio"
+              name="searchBy"
+              value="street"
+              onChange={(e) => setSearchBy(e.target.value)}
+            />
+            Street
+          </label>
+          <label id="radiobuttons">
+            <input
+              type="radio"
+              name="searchBy"
+              value="rentalType"
+              onChange={(e) => setSearchBy(e.target.value)}
+            />
+            Rental Type
+          </label>
+          <br />
+        </div>
         <br />
         <input
-            id="submit"
+          id="submit"
           type="text"
           placeholder="Search"
           onChange={(e) => setSearch(e.target.value)}
