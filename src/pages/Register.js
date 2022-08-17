@@ -56,9 +56,9 @@ const Register = () => {
 
   return (
     <div>
-      <h1>Register</h1>
+      <h1 id="register">Register</h1>
       <form id="registerForm" onSubmit={handleSubmit}>
-        <label>Username:</label>
+        <label id="registerinfo">Username:</label>
         <input
           type="text"
           name="username"
@@ -66,7 +66,7 @@ const Register = () => {
           onChange={(e) => setUserName(e.target.value)}
         />
         <br />
-        <label>Person Id</label>
+        <label id="registerinfo">Person Id</label>
         <input
           type="personId"
           name="personId"
@@ -74,7 +74,7 @@ const Register = () => {
           onChange={(e) => setPersonId(e.target.value)}
         />
         <br />
-        <label>Password:</label>
+        <label id="registerinfo">Password:</label>
         <input
           type="password"
           name="password"
@@ -82,7 +82,7 @@ const Register = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <label>Confirm Password:</label>
+        <label id="registerinfo">Confirm Password:</label>
         <input
           type="password"
           name="password"

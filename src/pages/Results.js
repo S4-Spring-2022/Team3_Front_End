@@ -7,52 +7,52 @@ const Results = (props) => {
   const results = props.results;
   const [shortResults, setShortResults] = useState([]);
 
-    // we aren't using mongo
-    // useEffect(() => {
-    //   if (props.database === "mongo") {
-    //     console.log(results[0]);
-    //     let temp = [];
-    //     let number;
-    //     results.length < 20 ? (number = results.length) : (number = 20);
-    //     // ^^ if the results are less than 20, display all results otherwise display 20
-    //     for (let i = 0; i < number; i++) {
-    //       temp.push(results[i]);
-    //     }
-    //     setShortResults(temp);
-    //   } else {
-    //     console.log(results);
-    //     setShortResults(results);
-    //   }
-    // }, []);
+  // we aren't using mongo
+  // useEffect(() => {
+  //   if (props.database === "mongo") {
+  //     console.log(results[0]);
+  //     let temp = [];
+  //     let number;
+  //     results.length < 20 ? (number = results.length) : (number = 20);
+  //     // ^^ if the results are less than 20, display all results otherwise display 20
+  //     for (let i = 0; i < number; i++) {
+  //       temp.push(results[i]);
+  //     }
+  //     setShortResults(temp);
+  //   } else {
+  //     console.log(results);
+  //     setShortResults(results);
+  //   }
+  // }, []);
 
-    useEffect(() => {
-      setShortResults(results);
+  useEffect(() => {
+    setShortResults(results);
 
-    }, []);
+  }, []);
 
-  if(results.length > 0) {
+  if (results.length > 0) {
 
     return (
       <div>
-        <h1>Results</h1>
+        <h1 id="results">Results</h1>
         <hr />
 
-          {shortResults.map((result) => (
-     
-              <div>
-                <hr/>
-                <h2 class="rentalTitle">{result.rentalDescription}</h2>
-                <hr/>
-                <h3>{result.rentalStatus}</h3>
-                <h3>Rental type: {result.rentalType}</h3>
-                <h3>Rated {result.rentalScore} Stars</h3>
-                <h3>Nightly Rate: ${result.rentalPrice}.00</h3>
-                <h3>Renting Since: {result.rentalListDate}</h3>
+        {shortResults.map((result) => (
+
+          <div>
+            <hr />
+            <h2 class="rentalTitle">{result.rentalDescription}</h2>
+            <hr />
+            <h3 id="rentalinfo">{result.rentalStatus}</h3>
+            <h3 id="rentalinfo">Rental type: {result.rentalType}</h3>
+            <h3 id="rentalinfo">Rated {result.rentalScore} Stars</h3>
+            <h3 id="rentalinfo">Nightly Rate: ${result.rentalPrice}.00</h3>
+            <h3 id="rentalinfo">Renting Since: {result.rentalListDate}</h3>
 
 
-              </div>
-      
-          ))}
+          </div>
+
+        ))}
 
       </div>
     )
