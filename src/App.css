@@ -38,7 +38,7 @@ header nav a {
 header nav a:hover {
     color: #191;
     text-decoration: underline;
-    transform: scale(1.7);
+    transform: scale(1.15);
 }
 
 header nav a:active {
