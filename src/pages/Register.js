@@ -2,8 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// bcrypt is unhappy about react, there are work arounds... to be continued time allowing
-//import bcrypt from "bcryptjs";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -29,8 +27,7 @@ const Register = () => {
     } else {
       setError(null);
       let user = new User(userName, password);
-      // bcrypt.hash(user.password, 10, (err, hash) => {})
-      // ^^ this is where i would encode the password, unless server side encryption becomes my chosen solution
+      
       await fetch("http://localhost:5000/users/add", {
         method: "POST",
         headers: {

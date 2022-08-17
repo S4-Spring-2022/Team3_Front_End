@@ -2,11 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-//will need many more imports including useEffect and useState
 
 const Login = (props) => {
-  // a useState to store the user object on successful login will be required
-  // ^^ will also need to be passed forward to the search page
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,15 +19,10 @@ const Login = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    // testing comments
-    //console.log(userName);
-    // console.log(password);
     if (userName === "" || password === "") {
       setError("Please enter a username and password");
       return
     }
-    // code to send value to server to check if user exists
-
     await fetch(`http://localhost:8080/users/userName?userName=${userName}`, {
       method: "GET",
       headers: {
@@ -42,8 +34,6 @@ const Login = (props) => {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
-          // console.log(response.body);
-          // console.log(response.json())
           return response.json();
         } else {
           setError("User does not exist");
@@ -57,8 +47,6 @@ const Login = (props) => {
       .then((data) => {
         console.log(data);
         if (data[0].password === password) {
-          //console.log("password is correct");
-          // if user exists and passwords match, set user object to the user object
           props.setUser(userName);
           props.setIsLoggedIn(true);
           navigate("/search");
@@ -72,12 +60,6 @@ const Login = (props) => {
         return;
       });
 
-    // early testing code for ensuring React was working
-    // props.setUser(userName);
-    // props.setIsLoggedIn(true);
-    // navigate("/search");
-    // setUserName("");
-    // setPassword("");
   };
 
   return (
